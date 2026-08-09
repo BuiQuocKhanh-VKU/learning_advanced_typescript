@@ -41,4 +41,13 @@ type CarKey = keyof Car;
 
 let key: CarKey;
 key = "year";
-console.log(key)
+console.log(key);
+
+function getProp<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+
+const product = { id: 1, name: "iPhone", price: 2000 };
+
+const d = getProp(product, "name");
+console.log(d);
