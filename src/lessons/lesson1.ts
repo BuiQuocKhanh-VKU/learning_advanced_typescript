@@ -31,23 +31,18 @@ showId({ id: 5, price: 100 });
 
 // keyof — lấy các key của object
 console.log("=============================");
-type Car = {
-    brand: string;
-    year: number;
-    color: string;
+const student = {
+    id: Date.now(),
+    name: "Khanh",
+    score: 9,
 };
 
-type CarKey = keyof Car;
-
-let key: CarKey;
-key = "year";
-console.log(key);
-
-function getProp<T, K extends keyof T>(obj: T, key: K): T[K] {
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
     return obj[key];
 }
 
-const product = { id: 1, name: "iPhone", price: 2000 };
+const d = getValue(student, "name");
+const e = getValue(student, "score");
 
-const d = getProp(product, "name");
-console.log(d);
+console.log(d); 
+console.log(e); 
