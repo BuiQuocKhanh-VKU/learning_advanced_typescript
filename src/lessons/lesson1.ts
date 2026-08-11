@@ -44,5 +44,27 @@ function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
 const d = getValue(student, "name");
 const e = getValue(student, "score");
 
-console.log(d); 
-console.log(e); 
+console.log(d);
+console.log(e);
+
+// Default Generic
+const names = ["an", "khanh", "long"];
+const lengtha = names.map((value) => value.length);
+console.log(lengtha);
+
+//
+function mapCollection<T, U>(arr: T[], fn: (item: T) => U): U[] {
+    return arr.map(fn);
+}
+const result = mapCollection(["An", "Khanh", "Mai"], (name) => name.length);
+
+console.log(result);
+
+// ex
+function translateMap<Input, Output>(arr: Input[], fn: (item: Input) => Output): Output[]{
+    return arr.map(fn)
+}
+
+const prices = [100, 200, 300]
+const resultt = translateMap(prices, (price) => `${price} VND`)
+console.log(resultt)
