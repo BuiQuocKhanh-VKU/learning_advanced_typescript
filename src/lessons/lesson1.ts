@@ -47,7 +47,7 @@ const e = getValue(student, "score");
 console.log(d);
 console.log(e);
 
-// Default Generic
+// Generic với map<T, U>
 const names = ["an", "khanh", "long"];
 const lengtha = names.map((value) => value.length);
 console.log(lengtha);
@@ -61,10 +61,43 @@ const result = mapCollection(["An", "Khanh", "Mai"], (name) => name.length);
 console.log(result);
 
 // ex
-function translateMap<Input, Output>(arr: Input[], fn: (item: Input) => Output): Output[]{
-    return arr.map(fn)
+function translateMap<Input, Output>(
+    arr: Input[],
+    fn: (item: Input) => Output,
+): Output[] {
+    return arr.map(fn);
 }
 
-const prices = [100, 200, 300]
-const resultt = translateMap(prices, (price) => `${price} VND`)
-console.log(resultt)
+const prices = [100, 200, 300];
+const resultt = translateMap(prices, (price) => `${price} VND`);
+console.log(resultt);
+
+// Generic voi filter<T>
+function filterCollection<Input>(
+    arr: Input[],
+    fn: (item: Input) => boolean,
+): Input[] {
+    return arr.filter(fn);
+}
+const pricess = [4, 5, 3, 2, 6, 7];
+const resulttt = filterCollection(pricess, (price) => price >= 5);
+console.log(resulttt);
+
+// pluck: Có một danh sách object → lấy ra cùng một thuộc tính của tất cả object.
+// function pluck<T, K extends keyof T>(arr: T[], key: K): T[K][] {
+//     return arr.map((value) => value[key]);
+// }
+//"Đưa tôi một mảng object T và một key có thật của object đó. Tôi sẽ lấy giá trị tại key đó của từng object và trả thành một mảng."
+
+const products = [
+    { id: 1, name: "iPhone", price: 2000 },
+    { id: 2, name: "Samsung", price: 1500 },
+    { id: 3, name: "Xiaomi", price: 1000 },
+];
+
+function pluck<T, K extends keyof T>(arr: T[], key: K): T[K][] {
+    return arr.map((value) => value[key]);
+}
+
+const getProduct = pluck(products, "name");
+console.log(getProduct)
