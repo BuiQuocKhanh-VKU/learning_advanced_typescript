@@ -100,4 +100,17 @@ function pluck<T, K extends keyof T>(arr: T[], key: K): T[K][] {
 }
 
 const getProduct = pluck(products, "name");
-console.log(getProduct)
+console.log(getProduct);
+
+// generic with reduce
+function reduceCollection<T, U>(
+    arr: T[],
+    fn: (acc: U, item: T) => U,
+    initial: U,
+): U {
+    return arr.reduce(fn, initial);
+}
+const pricesss = [100, 200, 300];
+const total = reduceCollection(pricesss, (sum, price) => sum + price, 0);
+
+console.log(total); 
