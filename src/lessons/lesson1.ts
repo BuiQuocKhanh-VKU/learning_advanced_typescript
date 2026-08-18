@@ -113,4 +113,21 @@ function reduceCollection<T, U>(
 const pricesss = [100, 200, 300];
 const total = reduceCollection(pricesss, (sum, price) => sum + price, 0);
 
-console.log(total); 
+console.log(total);
+
+//Genetic with groupBy
+function groupBy<T, K extends keyof T>(arr: T[], key: K): Map<T[K], T[]> {
+    const map = new Map<T[K], T[]>();
+    for (const item of arr) {
+        const k = item[key];
+        const group = map.get(k) ?? [];
+        group.push(item);
+        map.set(k, group);
+    }
+    return map;
+}
+const people = [
+    { age: "22"}
+]
+const byAge = groupBy(people, "age"); // Map<number, {id;name;age}[]>
+console.log(byAge)
